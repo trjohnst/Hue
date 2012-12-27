@@ -1,7 +1,23 @@
+var player,
+	H = 360,
+	W = 600,
+	HW = W / 2,
+	HH = H /2,
+	LW = 0,
+	LH = 0,
+	UW = 30, //unit width (size of blocks)
+	UH = 30, //unit height
+	SX = 0, //start x for player
+	SY = 0, //start y for player
+	MAX_LEVELS = 3;
+
 window.onload = function () {
-	Crafty.init(600,300);
-
+	//init crafty
+	Crafty.init(W,H);
+	//init canvas
 	Crafty.canvas.init();
-
+	//set canvas zIndex
+	Crafty.canvas._canvas.style.zIndex = '1';
+	//go to loading scene
 	Crafty.scene("loading");
 };
