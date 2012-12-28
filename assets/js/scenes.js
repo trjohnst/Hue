@@ -1,6 +1,12 @@
 Crafty.scene("loading", 
 function() { //init - run on transition to scene
 	var toLoad = [];
+
+	// Crafty.audio.add({
+	// 	music:"assets/music/Rymdkraft - Mustaschvapnet.mp3"
+	// });
+	// Crafty.audio.play("music", -1);
+
 	//after load go to main scene (menu)
 	Crafty.load(["assets/images/strip.png"], function () {
 		Crafty.scene("main");
@@ -45,32 +51,28 @@ function generateLevel(levelptr, levelval) {
 					//Crafty.e("Block")
 					//	.attr({ w: 30, h:30,x: j * 30, y: i * 30, z:1})
 					//	.setColor('black');
-					Crafty.e("2D, DOM, black, solid, !c, !m, !y, !w, k")
+					Crafty.e("2D, DOM, black, !c, !m, !y, !w")
 						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1});
 					break;
 				case 2: //c
-					Crafty.e("2D, DOM, cyan, solid, !m, !y, !w, !k, c")
+					Crafty.e("2D, DOM,cyan, !m, !y, !w, !k")
 						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1});
 					break;
 				case 3: //m
-					Crafty.e("2D, DOM, magenta, solid, !c, !y, !w, !k, m")
+					Crafty.e("2D, DOM,magenta, !c, !y, !w, !k")
 						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1});
 					break;
 				case 4: //y
-					Crafty.e("2D, DOM, yellow, solid, !c, !m, !w, !k, y")
+					Crafty.e("2D, DOM,yellow, !c, !m, !w, !k")
 						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1});
 					break;
 				case 5: //white
-					Crafty.e("2D, DOM, white, solid, !c, !m, !y, !k, w")
+					Crafty.e("2D, DOM, white, !c, !m, !y, !k")
 						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1});
 					break;
 				case 6: //player
 					SX = j * 30;
 					SY = i * 30;
-					break;
-				case 7: //world edge
-					Crafty.e("2D, DOM, black, solid, edge")
-						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1});
 					break;
 				case 8: //transition
 					Crafty.e("2D, DOM, transition")
@@ -158,13 +160,13 @@ Crafty.scene("level2", function() {
 var level3map = [
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1],
-	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,0,1,0,2,2,1],
-	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,1,1,1,2,2,1],
 	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,0,1],
-	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,1,1],
-	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,1,1],
-	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,1],
-	[1,0,0,0,0,3,3,0,0,0,0,0,3,3,0,1,0,0,0,0,0,1,1,1,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,1,1,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,3,3,0,0,0,0,0,3,3,0,1,0,0,0,0,0,0,0,0,0,0,1],
 	[1,0,0,0,0,1,1,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1],
 	[1,0,6,0,0,1,1,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,8,1],
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
