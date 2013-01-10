@@ -14,7 +14,7 @@ function() { //init - run on transition to scene
 	// 	music:"assets/music/Rymdkraft - Mustaschvapnet.mp3"
 	// });
 	// Crafty.audio.play("music", -1);
-
+	
 	//after load go to main scene (menu)
 	Crafty.load(["assets/img/strip.png"], function () {
 		Crafty.scene("main");
@@ -36,13 +36,41 @@ Crafty.scene("main", function() {
 	Crafty.viewport.y = 0;
 
 	Crafty.background("#cccccc");
+	Crafty.background("url("+game_path+"assets/img/logo.png) black");
+
 	Crafty.e("2D, DOM, Text")
-		.attr({ w:100, h:20, x:150, y:120})
-		.text("Press Space to Play")
+		.attr({ w:200, h:20, x:200, y:120})
+		.text("Press 'Enter' to Play")
+		.css({"text-align":"center"})
+		.bind("KeyDown", function(e) {
+			if(e.keyCode === Crafty.keys.ENTER)
+				Crafty.scene("level1");
+		});
+	Crafty.e("2D, DOM, Text")
+		.attr({ w:200, h:20, x:200, y:200})
+		.text("Press 'Space' to view instructions")
 		.css({"text-align":"center"})
 		.bind("KeyDown", function(e) {
 			if(e.keyCode === Crafty.keys.SPACE)
-				Crafty.scene("level1");
+				Crafty.scene("instructions");
+		});
+});
+
+Crafty.scene("instructions", function() {
+	Crafty.background("url("+game_path+"assets/img/logo.png) black");
+
+	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:120}).text("W : Jump").css({"text-align":"center"});
+	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:140}).text("A / D : Left / Right").css({"text-align":"center"});
+	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:160}).text("H : Change to Cyan").css({"text-align":"center"});
+	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:180}).text("J : Change to Magenta").css({"text-align":"center"});
+	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:200}).text("K : Change to Yellow").css({"text-align":"center"});
+	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:220}).text("L : Change to White").css({"text-align":"center"});
+
+	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:250})
+		.text("Press 'Space' to go back").css({"text-align":"center"})
+		.bind("KeyDown", function(e) {
+			if(e.keyCode === Crafty.keys.SPACE)
+				Crafty.scene("main");
 		});
 });
 
