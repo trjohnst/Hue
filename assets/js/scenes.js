@@ -1,3 +1,11 @@
+var timer;
+var bgColors = {
+	cyan: "#00aef0",
+	magenta: "#ed008c",
+	yellow:"#fff200",
+	white:"#ffffff"
+};
+
 Crafty.scene("loading", 
 function() { //init - run on transition to scene
 	var toLoad = [];
@@ -8,11 +16,11 @@ function() { //init - run on transition to scene
 	// Crafty.audio.play("music", -1);
 
 	//after load go to main scene (menu)
-	Crafty.load(["assets/images/strip.png"], function () {
+	Crafty.load(["assets/img/strip.png"], function () {
 		Crafty.scene("main");
 	});
 
-	Crafty.background("#000");
+	Crafty.background("#cccccc");
 	Crafty.e("2D, DOM, Text")
 		.attr({ w:100, h:20, x:150, y:120})
 		.text("Loading")
