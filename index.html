@@ -20,6 +20,16 @@
 	</style>
 </head>
 <body>
+<!-- facebook javascript sdk -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=92343646681";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!-- end facebook javascript sdk -->
 
 <div class="container">
 	<!-- crafty stage (canvas) -->
@@ -27,10 +37,14 @@
 	<br />
 	<!-- github fork button : http://ghbtns.com/ -->
 	<span class="pull-left">
+		<!-- google +1 button -->
 		<iframe src="http://ghbtns.com/github-btn.html?user=trjohnst&repo=Hue&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
 		<br />
 		<!-- google +1 button -->
 		<div class="g-plusone" data-size="medium" data-href="http://www.tpickled.com/projects/Hue"></div>
+		<br />
+		<!-- facebook like button -->
+		<div class="fb-like" data-href="http://www.tpickled.com/projects/Hue" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="tahoma" data-colorscheme="light"></div>
 	</span>
 	<span class="pull-right">
 		<p>powered by <a href="http://craftyjs.com/">crafty</a></p>
@@ -55,11 +69,11 @@
 	var game_path = location.href.lastIndexOf("/") !== -1 ? location.href.substring(0,location.href.lastIndexOf("/") + 1) : location.href;
 </script>
 <script type="text/javascript" src="assets/js/crafty.js"></script>
+<script type="text/javascript" src="assets/js/game.js"></script>
 <script type="text/javascript" src="assets/js/sprites.js"></script>
 <script type="text/javascript" src="assets/js/block.js"></script>
 <script type="text/javascript" src="assets/js/player.js"></script>
 <script type="text/javascript" src="assets/js/scenes.js"></script>
-<script type="text/javascript" src="assets/js/game.js"></script>
 
 </body>
 </html>	
