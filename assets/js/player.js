@@ -83,6 +83,13 @@ Crafty.c("Player", {
 					this.x = SX;
 					this.y = SY;
 					Crafty.viewport.x = 0;
+
+					//reset color - not working
+					Crafty.background("#ffffff");
+					this.antigravity(this.active_color);
+					this.active_color = '!w';
+					this.gravity(this.active_color);
+					this.inactive_color = 'white';
 				}
 			} else if(frame.frame%8) {
 				if(this.hit('transition')) {	
