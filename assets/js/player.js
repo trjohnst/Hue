@@ -6,6 +6,10 @@ Crafty.c("Player", {
 	colliding_with_inactive: false,
 	color_change: false,
 	level: 1,
+	c_key: 0,
+	m_key: 0,
+	y_key: 0,
+	w_key: 0,
 	init:function(){
 		this._active = true;
 		this.active_color = '!w';
@@ -25,51 +29,28 @@ Crafty.c("Player", {
 		})
 		.bind("KeyUp", function(e) {
 			switch(e.keyCode) {
-				case Crafty.keys.H: //c
-					Crafty.background("#00aef0");
-					this.antigravity(this.active_color);
-					this.active_color = '!c';
-					this.gravity(this.active_color);
-					this.inactive_color = 'cyan';
+				case this.c_key: //c
+					this.changeColor('!c', 'cyan',"#00aef0");
 					this.color_change = true;
 					break;
-				case Crafty.keys.J:	//M
-					Crafty.background("#ed008c");
-					this.antigravity(this.active_color);
-					this.active_color = '!m';
-					this.gravity(this.active_color);
-					this.inactive_color = 'magenta';
+				case this.m_key:	//m
+					this.changeColor('!m', 'magenta', "#ed008c");
 					this.color_change = true;
 					break;
-				case Crafty.keys.K: //Y
-					Crafty.background("#fff200");
-					this.antigravity(this.active_color);
-					this.active_color = '!y';
-					this.gravity(this.active_color);
-					this.inactive_color = 'yellow';
+				case this.y_key: //y
+					this.changeColor('!y', 'yellow', "#fff200");
 					this.color_change = true;
 					break;
-				case Crafty.keys.L: //W
-					Crafty.background("#ffffff");
-					this.antigravity(this.active_color);
-					this.active_color = '!w';
-					this.gravity(this.active_color);
-					this.inactive_color = 'white';
+				case this.w_key: //w
+					this.changeColor('!w', 'white', "#ffffff");
 					this.color_change = true;
 					break;
+				case 48: //level changing
 				case 49:
-					this.level = 1;
-					Crafty.scene("level1");
-					this.destroy();
-					break;
 				case 50:
-					this.level = 2;
-					Crafty.scene("level2");
-					this.destroy();
-					break;
 				case 51:
-					this.level = 3;
-					Crafty.scene("level3");
+					this.level = e.keyCode - 48;
+					Crafty.scene('level' + this.level);
 					this.destroy();
 					break;
 
@@ -84,12 +65,8 @@ Crafty.c("Player", {
 					this.y = SY;
 					Crafty.viewport.x = 0;
 
-					//reset color - not working
-					Crafty.background("#ffffff");
-					this.antigravity(this.active_color);
-					this.active_color = '!w';
-					this.gravity(this.active_color);
-					this.inactive_color = 'white';
+					//reset color
+					this.changeColor('!w','white',"#ffffff");
 				}
 			} else if(frame.frame%8) {
 				if(this.hit('transition')) {	
@@ -109,7 +86,6 @@ Crafty.c("Player", {
 			// 	this.color_change = false;
 			// }
 		});
-		//.reset();
 		return this;
 	},
 	reset:function(){
@@ -118,9 +94,15 @@ Crafty.c("Player", {
 		this.sprite = "player";
 		this.speed = 2;
 		this.antigravity(active_color);
-		this.gravity(active_color);
 		this.active_color = '!w';
+		this.gravity(active_color);
 		this.inactive_color = 'white';
+	},
+	changeColor:function(active, inactive, background) {
+		Crafty.background(background);
+		this.antigravity(this.active_color);
+		this.active_color = active;
+		this.gravity(this.active_color);
+		this.inactive_color = inactive;
 	}
-
 });

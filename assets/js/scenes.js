@@ -117,7 +117,8 @@ function generateLevel(levelptr, levelval) {
 			}
 		}
 		player = Crafty.e("Player")
-						.attr({w:30, h:30, x: SX, y: SY, _globalZ:2, level:levelval})
+						.attr({w:30, h:30, x: SX, y: SY, _globalZ:2, level:levelval
+						,c_key: c_key, m_key: m_key, y_key: y_key, w_key:w_key})
 						.twoway(3,6)
 						.gravity('!w');
 	}
@@ -211,6 +212,32 @@ var level3map = [
 Crafty.scene("level3", function() {
 	Crafty.background("#ffffff");
 	generateLevel(level3map,3);
+
+	Crafty.viewport.x = 0;
+});
+
+var level0map = [
+	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,1],
+	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+];
+
+Crafty.scene("level0", function() {
+	Crafty.background("#ffffff");
+	Crafty.e("2D, DOM, Text")
+		.attr({ w:200, h:20, x:150, y:150})
+		.text("This is not a test")
+		.css({"text-align":"center"});
+	generateLevel(level0map,0);
 
 	Crafty.viewport.x = 0;
 });

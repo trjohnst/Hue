@@ -9,7 +9,11 @@ var player,
 	UH = 30, //unit height
 	SX = 0, //start x for player
 	SY = 0, //start y for player
-	MAX_LEVELS = 3;
+	MAX_LEVELS = 3,
+	c_key = Crafty.keys.H,
+	m_key = Crafty.keys.J,
+	y_key = Crafty.keys.K,
+	w_key = Crafty.keys.L;
 
 window.onload = function () {
 	//init crafty
