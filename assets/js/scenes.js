@@ -1,3 +1,7 @@
+//
+//	Scenes
+//
+
 var timer;
 var bgColors = {
 	cyan: "#00aef0",
@@ -6,6 +10,16 @@ var bgColors = {
 	white:"#ffffff"
 };
 
+function changeScene(newscene, oldscene) {
+	$("#"+oldscene).hide();
+	$("#"+oldscene).find('*').hide();
+	$("#"+newscene).show();
+	$("#"+newscene).find('*').show();
+	Crafty.scene(newscene);
+}
+
+//loading
+//   This is where assets are loaded
 Crafty.scene("loading", 
 function() { //init - run on transition to scene
 	var toLoad = [];
@@ -15,21 +29,21 @@ function() { //init - run on transition to scene
 	// });
 	// Crafty.audio.play("music", -1);
 	
-	//after load go to main scene (menu)
-	Crafty.load(["assets/img/strip.png"], function () {
-		Crafty.scene("main");
-	});
-
 	Crafty.background("#cccccc");
 	Crafty.e("2D, DOM, Text")
 		.attr({ w:100, h:20, x:150, y:120})
 		.text("Loading")
 		.css({"text-align":"center"});
-}, 
-function() { //uninit - run on transition from scene
+
+	//after load go to main scene (menu)
+	Crafty.load(["assets/img/strip.png"], function () {
+		changeScene('main', 'loading');
+	});
 
 });
 
+//main
+//  This is the main menu
 Crafty.scene("main", function() {
 	//reset viewport in case transitioning from a level
 	Crafty.viewport.x = 0;
@@ -38,24 +52,27 @@ Crafty.scene("main", function() {
 	Crafty.background("#cccccc");
 	Crafty.background("url("+game_path+"assets/img/logo.png) black");
 
+	//TO DO - remove the following and get menu working
 	Crafty.e("2D, DOM, Text")
-		.attr({ w:200, h:20, x:200, y:120})
+		.attr({ w:200, h:20, x:200, y:240})
 		.text("Press 'Enter' to Play")
 		.css({"text-align":"center"})
 		.bind("KeyDown", function(e) {
 			if(e.keyCode === Crafty.keys.ENTER)
-				Crafty.scene("level1");
+				changeScene("play", "main");
 		});
 	Crafty.e("2D, DOM, Text")
-		.attr({ w:200, h:20, x:200, y:200})
+		.attr({ w:200, h:20, x:200, y:260})
 		.text("Press 'Space' to view instructions")
 		.css({"text-align":"center"})
 		.bind("KeyDown", function(e) {
 			if(e.keyCode === Crafty.keys.SPACE)
-				Crafty.scene("instructions");
+				changeScene("instructions", "main");
 		});
 });
 
+//How to Play
+//    Instructions on how to play the game
 Crafty.scene("instructions", function() {
 	Crafty.background("url("+game_path+"assets/img/logo.png) black");
 
@@ -66,11 +83,12 @@ Crafty.scene("instructions", function() {
 	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:200}).text("K : Change to Yellow").css({"text-align":"center"});
 	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:220}).text("L : Change to White").css({"text-align":"center"});
 
+	//TO DO - remove and get buttons working
 	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:250})
 		.text("Press 'Space' to go back").css({"text-align":"center"})
 		.bind("KeyDown", function(e) {
 			if(e.keyCode === Crafty.keys.SPACE)
-				Crafty.scene("main");
+				changeScene('main', 'instructions');
 		});
 });
 
@@ -138,6 +156,45 @@ function generateLevel(levelptr, levelval) {
 	});
 }
 
+
+Crafty.scene("play", function() {
+
+	levelInit();
+
+	Crafty.viewport.x = 0;
+	Crafty.viewport.y = 0;
+});
+
+function levelInit() {
+	switch(currentLevel) {
+		case 0:
+			Crafty.e("2D, DOM, Text")
+				.attr({ w:200, h:20, x:150, y:150})
+				.text("This is not a test")
+				.css({"text-align":"center"});
+			break;
+		case 1:
+			Crafty.e("2D, DOM, Text")
+				.attr({ w:200, h:20, x:150, y:120})
+				.text("Press A and D to move left and right and W to jump")
+				.css({"text-align":"center"});
+			Crafty.e("2D, DOM, Text")
+				.attr({ w:200, h:20, x:650, y:120})
+				.text("Press H, J, K and L to change the background colors")
+				.css({"text-align":"center"});
+			break;
+		case 2:
+			Crafty.e("2D, DOM, Text")
+				.attr({ w:200, h:20, x:150, y:150})
+				.text("Avoid those unnaccepting of your ways")
+				.css({"text-align":"center"});
+			break;
+	}
+
+	Crafty.background("#ffffff");
+	generateLevel(levelMaps[currentLevel],currentLevel);
+}
+
 var level1map = [
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
@@ -152,21 +209,6 @@ var level1map = [
 	[1,0,6,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,8,1],
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
-
-Crafty.scene("level1", function() {
-	Crafty.e("2D, DOM, Text")
-		.attr({ w:200, h:20, x:150, y:120})
-		.text("Press A and D to move left and right and W to jump")
-		.css({"text-align":"center"});
-	Crafty.e("2D, DOM, Text")
-		.attr({ w:200, h:20, x:650, y:120})
-		.text("Press G, H, J and K to change the background colors")
-		.css({"text-align":"center"});
-	Crafty.background("#ffffff");
-	generateLevel(level1map,1);
-
-	Crafty.viewport.x = 0;
-});
 
 var level2map = [
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -183,17 +225,6 @@ var level2map = [
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
 
-Crafty.scene("level2", function() {
-	Crafty.background("#ffffff");
-	Crafty.e("2D, DOM, Text")
-		.attr({ w:200, h:20, x:150, y:150})
-		.text("Avoid those unnaccepting of your ways")
-		.css({"text-align":"center"});
-	generateLevel(level2map,2);
-
-	Crafty.viewport.x = 0;
-});
-
 var level3map = [
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1],
@@ -208,13 +239,6 @@ var level3map = [
 	[1,0,6,0,0,1,1,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,8,1],
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
-
-Crafty.scene("level3", function() {
-	Crafty.background("#ffffff");
-	generateLevel(level3map,3);
-
-	Crafty.viewport.x = 0;
-});
 
 var level0map = [
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -231,13 +255,8 @@ var level0map = [
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
 
-Crafty.scene("level0", function() {
-	Crafty.background("#ffffff");
-	Crafty.e("2D, DOM, Text")
-		.attr({ w:200, h:20, x:150, y:150})
-		.text("This is not a test")
-		.css({"text-align":"center"});
-	generateLevel(level0map,0);
-
-	Crafty.viewport.x = 0;
-});
+var levelMaps = new Array();
+levelMaps.push(level0map);
+levelMaps.push(level1map);
+levelMaps.push(level2map);
+levelMaps.push(level3map);

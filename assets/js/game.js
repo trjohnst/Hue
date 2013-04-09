@@ -9,19 +9,25 @@ var player,
 	UH = 30, //unit height
 	SX = 0, //start x for player
 	SY = 0, //start y for player
+	currentLevel = 1,
 	MAX_LEVELS = 3,
 	c_key = Crafty.keys.H,
 	m_key = Crafty.keys.J,
 	y_key = Crafty.keys.K,
 	w_key = Crafty.keys.L;
 
-window.onload = function () {
+$(document).ready(function() {
 	//init crafty
 	Crafty.init(W,H);
 	//init canvas
 	Crafty.canvas.init();
 	//set canvas zIndex
 	Crafty.canvas._canvas.style.zIndex = '1';
+
+	$('#play').bind('click',function(){
+        changeScene('play', 'main');
+    });
+
 	//go to loading scene
 	Crafty.scene("loading");
-};
+});

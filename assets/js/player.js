@@ -73,7 +73,9 @@ Crafty.c("Player", {
 					if(++this.level > MAX_LEVELS) {
 						Crafty.scene('main');
 					} else {
-						Crafty.scene("level" + (this.level));
+						// Crafty.scene("level" + (this.level));
+						currentLevel++;
+						Crafty.scene('play');
 					}
 				}
 			}

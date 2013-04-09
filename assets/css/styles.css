@@ -1,0 +1,56 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+body {
+	background-color:gray;
+}
+.container {
+	position: relative;
+	width:600px;
+	margin-left:-300px;
+	left:50%;
+}
+p {
+	color:white;
+}
+@font-face {
+	font-family: actionman;
+	src: url('Action_Man.ttf');
+}
+#menu-container {
+	margin-top: 120px;
+}
+.btn{
+    cursor:pointer;
+    font-family: actionman;
+    font-size: 30px;
+    color: black;
+    font-weight: bold;
+    line-height: 40px;
+    display:none;
+    position: relative;
+    height:40px;
+    -moz-border-radius: 7px; /* Firefox */
+    -webkit-border-radius: 7px; /* Safari, Chrome */
+    border-radius: 7px; /* CSS3 */
+    border:3px solid black;
+    background: white;
+    text-align: center;
+}
+.btn:hover {
+	background-color: black;
+	color: white;
+}
+.menu-btn {
+    width: 160px;
+    left:50%;
+    margin-left:-80px;
+    margin-top:10px;
+}
+.back-btn {
+    width: 100px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
