@@ -71,11 +71,11 @@ Crafty.c("Player", {
 			} else if(frame.frame%8) {
 				if(this.hit('transition')) {	
 					if(++this.level > MAX_LEVELS) {
-						Crafty.scene('main');
+						currentLevel = 1;
+						changeScene('main', 'play');
 					} else {
-						// Crafty.scene("level" + (this.level));
 						currentLevel++;
-						Crafty.scene('play');
+						changeScene('play', 'play');
 					}
 				}
 			}
