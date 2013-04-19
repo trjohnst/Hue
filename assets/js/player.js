@@ -50,7 +50,8 @@ Crafty.c("Player", {
 				case 50:
 				case 51:
 					this.level = e.keyCode - 48;
-					Crafty.scene('level' + this.level);
+					currentLevel = this.level;
+					Crafty.scene('play');
 					this.destroy();
 					break;
 

@@ -35,10 +35,30 @@ function() { //init - run on transition to scene
 		.text("Loading")
 		.css({"text-align":"center"});
 
-	//after load go to main scene (menu)
-	Crafty.load(["assets/img/strip.png"], function () {
-		changeScene('main', 'loading');
+	var load = [];
+
+	load.push(game_path+"assets/img/logo.png");
+	for(var iter in Crafty.assets){
+        load.push(iter);
+    }
+
+    //load sprites
+    Crafty.sprite(50, "assets/img/strip.png", {
+		player: [0,0],
+		cyan: [0,1],
+		magenta: [0,2],
+		yellow: [0,3],
+		black: [0,4],
+		white: [0,5]
 	});
+
+    Crafty.background("url("+game_path+"assets/img/logo.png) black");
+
+	//after load go to main scene (menu)
+	// Crafty.load(["assets/img/strip.png"], function () {
+	// 	changeScene('main', 'loading');
+	// });
+	changeScene('main', 'loading');
 
 });
 
@@ -49,32 +69,13 @@ Crafty.scene("main", function() {
 	Crafty.viewport.x = 0;
 	Crafty.viewport.y = 0;
 
-	Crafty.background("#cccccc");
+	// Crafty.background("#cccccc");
 	Crafty.background("url("+game_path+"assets/img/logo.png) black");
-
-	//TO DO - remove the following and get menu working
-	Crafty.e("2D, DOM, Text")
-		.attr({ w:200, h:20, x:200, y:240})
-		.text("Press 'Enter' to Play")
-		.css({"text-align":"center"})
-		.bind("KeyDown", function(e) {
-			if(e.keyCode === Crafty.keys.ENTER)
-				changeScene("play", "main");
-		});
-	Crafty.e("2D, DOM, Text")
-		.attr({ w:200, h:20, x:200, y:260})
-		.text("Press 'Space' to view instructions")
-		.css({"text-align":"center"})
-		.bind("KeyDown", function(e) {
-			if(e.keyCode === Crafty.keys.SPACE)
-				changeScene("instructions", "main");
-		});
 });
 
 //How to Play
 //    Instructions on how to play the game
 Crafty.scene("instructions", function() {
-	Crafty.background("url("+game_path+"assets/img/logo.png) black");
 
 	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:120}).text("W : Jump").css({"text-align":"center"});
 	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:140}).text("A / D : Left / Right").css({"text-align":"center"});
@@ -83,13 +84,6 @@ Crafty.scene("instructions", function() {
 	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:200}).text("K : Change to Yellow").css({"text-align":"center"});
 	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:220}).text("L : Change to White").css({"text-align":"center"});
 
-	//TO DO - remove and get buttons working
-	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:250})
-		.text("Press 'Space' to go back").css({"text-align":"center"})
-		.bind("KeyDown", function(e) {
-			if(e.keyCode === Crafty.keys.SPACE)
-				changeScene('main', 'instructions');
-		});
 });
 
 function generateLevel(levelptr, levelval) {
