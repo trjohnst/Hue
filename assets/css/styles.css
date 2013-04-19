@@ -19,7 +19,7 @@ p {
 	src: url('Action_Man.ttf');
 }
 #menu-container {
-	margin-top: 120px;
+	margin-top: 100px;
 }
 .btn{
     cursor:pointer;
@@ -37,6 +37,7 @@ p {
     border:3px solid black;
     background: white;
     text-align: center;
+    z-index:2;
 }
 .btn:hover {
 	background-color: black;
