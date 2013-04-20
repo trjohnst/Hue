@@ -80,14 +80,6 @@ Crafty.c("Player", {
 					}
 				}
 			}
-
-			// if(this.color_change && this.hit(this.inactive_color)) {
-			// 	this.x = SX;
-			// 	this.y = SY;
-			// 	Crafty.viewport.x = 0;
-			// } else {
-			// 	this.color_change = false;
-			// }
 		});
 		return this;
 	},

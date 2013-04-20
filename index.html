@@ -9,16 +9,17 @@
 	<script type="text/javascript" src="assets/js/game.js"></script>
 	
 	<!-- begin styles -->
-	
+	<!--
 	<link href="assets/css/bootstrap.css" rel="stylesheet">
 	<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
-	
+	-->
 	<link type="text/css" href="assets/css/styles.css" rel="stylesheet" />
 
 	<!-- end styles -->
 </head>
 <body>
 <!-- facebook javascript sdk -->
+<!--
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -27,22 +28,46 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=92343646681";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+-->
 <!-- end facebook javascript sdk -->
 
-<div class="container">
+<div class="game-container">
 	<!-- crafty stage (canvas) -->
 	<div id="cr-stage">
 		<div id="main">
-			<div id="menu-container">
+			<div class="container">
 				<div id="play-btn" class="btn menu-btn">Play</div>
 				<div id="inst-btn" class="btn menu-btn">How To</div>
 				<div id="lvsl-btn" class="btn menu-btn">Level</div>
 				<div id="cred-btn" class="btn menu-btn">Credits</div>
-				<!--<div style="clear: both;"></div>-->
 			</div>
 		</div>
 		<div id="instructions">
 			<div id="instback-btn" class="btn back-btn">Back</div>
+
+			<div class="container">
+				<div class="instruction">W : Jump</div>
+				<div class="instruction">A / D : Left / Right</div>
+				<div class="instruction">H : Change to Cyan</div>
+				<div class="instruction">J : Change to Magenta</div>
+				<div class="instruction">K : Change to Yellow</div>
+				<div class="instruction">L : Change to White</div>
+			</div>
+		</div>
+		<div id="levelselect">
+			<div id="lvslback-btn" class="btn back-btn">Back</div>
+
+			<div id="lvls" class="container">
+				<!-- buttons generated in game.js -->
+			</div>
+		</div>
+		<div id="credits">
+			<div id="credback-btn" class="btn back-btn">Back</div>
+			<div class="container">
+				<div class="credit">Development: Thomas Johnston</div>
+				<div class="credit">Art: Thomas Johnston</div>
+				<div class="credit">Font: ShyFonts</div>
+			</div>
 		</div>
 	</div>
 	<br />
@@ -51,13 +76,19 @@
 	<div>
 		<span class="pull-left">
 			<!-- github fork button : http://ghbtns.com/ -->
+			<!--
 			<iframe src="http://ghbtns.com/github-btn.html?user=trjohnst&repo=Hue&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
 			<br />
+			-->
 			<!-- google +1 button -->
+			<!--
 			<div class="g-plusone" data-size="medium" data-href="http://www.tpickled.com/projects/Hue"></div>
 			<br />
+			-->
 			<!-- facebook like button -->
+			<!--
 			<div class="fb-like" data-href="http://www.tpickled.com/projects/Hue" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="tahoma" data-colorscheme="light"></div>
+			-->
 		</span>
 		<span class="pull-right">
 			<p>built with <a href="http://craftyjs.com/">crafty</a></p>

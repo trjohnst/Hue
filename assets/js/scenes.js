@@ -20,8 +20,7 @@ function changeScene(newscene, oldscene) {
 
 //loading
 //   This is where assets are loaded
-Crafty.scene("loading", 
-function() { //init - run on transition to scene
+Crafty.scene("loading", function() { //init - run on transition to scene
 	var toLoad = [];
 
 	// Crafty.audio.add({
@@ -77,12 +76,17 @@ Crafty.scene("main", function() {
 //    Instructions on how to play the game
 Crafty.scene("instructions", function() {
 
-	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:120}).text("W : Jump").css({"text-align":"center"});
-	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:140}).text("A / D : Left / Right").css({"text-align":"center"});
-	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:160}).text("H : Change to Cyan").css({"text-align":"center"});
-	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:180}).text("J : Change to Magenta").css({"text-align":"center"});
-	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:200}).text("K : Change to Yellow").css({"text-align":"center"});
-	Crafty.e("2D, DOM, Text").attr({ w:200, h:20, x:200, y:220}).text("L : Change to White").css({"text-align":"center"});
+});
+
+//Level Select
+//    Links to each level
+Crafty.scene("levelselect", function() {
+
+});
+
+//Credits
+//    Credits for the game
+Crafty.scene("credits", function() {
 
 });
 
@@ -160,6 +164,7 @@ Crafty.scene("play", function() {
 });
 
 function levelInit() {
+	console.log(currentLevel);
 	switch(currentLevel) {
 		case 0:
 			Crafty.e("2D, DOM, Text")

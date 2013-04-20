@@ -32,16 +32,35 @@ window.onload = function() {
 		changeScene('instructions', 'main');
 	});
 	$('#lvsl-btn').on('click', function() {
-
+		changeScene('levelselect', 'main');
 	});
 	$('#cred-btn').on('click', function() {
-
+		changeScene('credits', 'main');
 	});
 
 	//setup on click events for back buttons
-	$('#instback-btn').bind('click',function(){
+	$('#instback-btn').on('click',function(){
     	changeScene('main', 'instructions');
     });
+    $('#lvslback-btn').on('click',function(){
+    	changeScene('main', 'levelselect');
+    });
+    $('#credback-btn').on('click',function(){
+    	changeScene('main', 'credits');
+    });
+
+    //generate level buttons with the following
+	//<div class="btn lvl-btn">#</div>
+	var lvlCntr = $('div#lvls');
+	for(var i = 1; i <= MAX_LEVELS; i++) {
+		lvlCntr.append('<div id="lvl'+ i + '"class="btn lvl-btn">' + i + '</div>');
+		$('#lvl'+i).on('click',function() {
+			//set the current level by grabbing the id
+			currentLevel = $(this).attr('id').substring(3);
+			//go to the level
+			changeScene('play', 'levelselect');
+		});
+	}
 
     game_path = location.href.lastIndexOf("/") !== -1 ? location.href.substring(0,location.href.lastIndexOf("/") + 1) : location.href;
 
