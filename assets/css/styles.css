@@ -18,6 +18,17 @@ p {
 	font-family: actionman;
 	src: url('Action_Man.ttf');
 }
+#underleft {
+    height: 100px;
+}
+#underright {
+    position: absolute;
+    text-align: right;
+    width: 100px;
+    height: 100px;
+    margin: -50px 0 0 -100px;
+    left: 100%;
+}
 #load,#main,#levelselect,#instructions,#credits{
     display: none;
     position: absolute;
