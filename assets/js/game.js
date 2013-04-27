@@ -55,7 +55,7 @@ window.onload = function() {
 	for(var i = 1; i <= MAX_LEVELS; i++) {
 		lvlCntr.append('<div id="lvl'+ i + '"class="btn lvl-btn">' + i + '</div>');
 		$('#lvl'+i).on('click',function() {
-			//set the current level by grabbing the id
+			//set the current level by grabbing and parsing the id
 			currentLevel = $(this).attr('id').substring(3);
 			//go to the level
 			changeScene('play', 'levelselect');

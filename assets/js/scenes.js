@@ -10,6 +10,21 @@ var bgColors = {
 	white:"#ffffff"
 };
 
+var blocks = {
+	black: [],
+	cyan: [],
+	magenta: [],
+	yellow: [],
+	white: []
+}
+function clearBlocks() {
+	while(blocks.black.pop()){}
+	while(blocks.cyan.pop()) {}
+	while(blocks.magenta.pop()) {}
+	while(blocks.yellow.pop()) {}
+	while(blocks.white.pop()) {}
+}
+
 function changeScene(newscene, oldscene) {
 	$("#"+oldscene).hide();
 	$("#"+oldscene).find('*').hide();
@@ -100,27 +115,24 @@ function generateLevel(levelptr, levelval) {
 				case 0: //none
 					break;
 				case 1: //k
-					//Crafty.e("Block")
-					//	.attr({ w: 30, h:30,x: j * 30, y: i * 30, z:1})
-					//	.setColor('black');
-					Crafty.e("2D, DOM, black, !c, !m, !y, !w")
-						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1});
+					blocks.black.push(Crafty.e("2D, DOM, black, !c, !m, !y, !w")
+						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1}));
 					break;
 				case 2: //c
-					Crafty.e("2D, DOM,cyan, !m, !y, !w, !k")
-						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1});
+					blocks.cyan.push(Crafty.e("2D, DOM,cyan, !m, !y, !w, !k, solid")
+						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1}));
 					break;
 				case 3: //m
-					Crafty.e("2D, DOM,magenta, !c, !y, !w, !k")
-						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1});
+					blocks.magenta.push(Crafty.e("2D, DOM,magenta, !c, !y, !w, !k, solid")
+						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1}));
 					break;
 				case 4: //y
-					Crafty.e("2D, DOM,yellow, !c, !m, !w, !k")
-						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1});
+					blocks.yellow.push(Crafty.e("2D, DOM,yellow, !c, !m, !w, !k, solid")
+						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1}));
 					break;
 				case 5: //white
-					Crafty.e("2D, DOM, white, !c, !m, !y, !k")
-						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1});
+					blocks.white.push(Crafty.e("2D, DOM, white, !c, !m, !y, !k, solid")
+						.attr({ w: 30, h:30,x: j * 30, y: i * 30, globalZ:1}));
 					break;
 				case 6: //player
 					SX = j * 30;
@@ -132,7 +144,7 @@ function generateLevel(levelptr, levelval) {
 					break;
 			}
 		}
-		player = Crafty.e("Player")
+		player = Crafty.e("Player,Colorer,LevelChanger")
 						.attr({w:30, h:30, x: SX, y: SY, _globalZ:2, level:levelval
 						,c_key: c_key, m_key: m_key, y_key: y_key, w_key:w_key})
 						.twoway(3,6)
@@ -164,7 +176,6 @@ Crafty.scene("play", function() {
 });
 
 function levelInit() {
-	console.log(currentLevel);
 	switch(currentLevel) {
 		case 0:
 			Crafty.e("2D, DOM, Text")
