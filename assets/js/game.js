@@ -16,7 +16,10 @@ var player,
 	y_key = Crafty.keys.K,
 	w_key = Crafty.keys.L;
 
-window.onload = function() {
+$(document).ready(function() {
+
+	game_path = location.href.lastIndexOf("/") !== -1 ? location.href.substring(0,location.href.lastIndexOf("/") + 1) : location.href;
+
 	//init crafty
 	Crafty.init(W,H);
 	//init canvas
@@ -62,8 +65,6 @@ window.onload = function() {
 		});
 	}
 
-    game_path = location.href.lastIndexOf("/") !== -1 ? location.href.substring(0,location.href.lastIndexOf("/") + 1) : location.href;
-
 	//go to loading scene
 	Crafty.scene("loading");
-};
+});
